@@ -1,0 +1,60 @@
+import java.util.Scanner;
+import java.util.Random;
+public class RockPaperScissors {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Welcome to Rock Papers & Scissors");
+        int playerscore=0;
+        int computerscore=0;
+        String[] options={"rock","papers","scissors"};
+        boolean playagin=true;
+        Random random=new Random();
+
+        while(playagin){
+            System.out.println("Enter your choice (Rock/Paper/Scissor)");
+            System.out.println("Enter Exit to finish the game.");
+            String playermove=sc.next();
+
+            int randomindex=random.nextInt(3);
+            String computermove=options[randomindex];
+
+            String p=playermove.toLowerCase();
+            String c=computermove.toLowerCase();
+            if(p.equals("exit")){
+                playagin=false;
+                break;
+            }
+            if(!p.equals("rock") && !p.equals("paper") && !p.equals("scissor")){
+                System.out.println("Invalid choice");
+                continue;
+            }
+            if(p.equals(c)){
+                System.out.println("Game Draw");
+            }
+            else if( (p.equals("rock") && c.equals("scissors")) 
+            || (p.equals("paper") && c.equals("rock"))
+            || (p.equals("scissor") && c.equals("paper")) ){
+                System.out.println("You won!");
+                playerscore++;
+            }else{
+                System.out.println("You lose!");
+                computerscore++;
+            }
+        }
+
+        System.out.println("Your score "+playerscore);
+        System.out.println("Computer score "+computerscore);
+        if(playerscore>computerscore){
+            System.out.println("Congratulations! You've crushed it! Victory is yours!");
+        }
+        else if(playerscore==computerscore){
+            System.out.println("It’s a draw! Great minds think alike!");
+        }
+        else{
+            System.out.println("Oops! The computer takes this one, but the battle isn’t over!");
+        }
+
+        System.out.println("Thank you for playing.");
+        sc.close();
+    }
+}
